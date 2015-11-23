@@ -11,9 +11,12 @@ import os
 if len(sys.argv) != 4:
     sys.exit('Usage: python server.py IP port audio_file')
 
-IP_SERV = sys.argv[1]
-PORT_SERV = int(sys.argv[2])
-FICHERO = sys.argv[3]
+try:
+    IP_SERV = sys.argv[1]
+    PORT_SERV = int(sys.argv[2])
+    FICHERO = sys.argv[3]
+except Exception:
+    sys.exit('Usage: python server.py IP port audio_file')
 
 
 class EchoHandler(socketserver.DatagramRequestHandler):
