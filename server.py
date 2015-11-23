@@ -38,7 +38,7 @@ class EchoHandler(socketserver.DatagramRequestHandler):
                 print ('Vamos a ejecutar', aEjecutar)
                 os.system(aEjecutar)
             elif metod = 'BYE':
-
+                self.wfile.write(b'SIP/2.0 200 OK\r\n\r\n')
             else:
                 self.wfile.write(b'SIP/2.0 400 Bad request\r\n\r\n')
 
