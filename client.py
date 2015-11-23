@@ -29,8 +29,7 @@ my_socket.send(bytes(LINE, 'utf-8') + b'\r\n')
 data = my_socket.recv(1024)
 
 #Envio del ACK si se recibe el TRYING,RING y OK
-rec_invite = data.split('\r\n\r\n')[:,-1]
-if
+rec_invite = data.decode('utf-8').split('\r\n\r\n')[0:-1]
 print('Recibido -- ', data.decode('utf-8'))
 print("Terminando socket...")
 
