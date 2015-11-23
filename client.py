@@ -10,11 +10,13 @@ import sys
 # Cliente UDP simple.
 if len(sys.argv) != 3:
     sys.exit('Usage: python client.py method receiver@IP:SIPport')
-
-METOD = sys.argv[1].upper()
-RECEPTOR = sys.argv[2].split('@')[0]
-IP_REC = sys.argv[2].split('@')[1].split(':')[0]
-PORT_REC = int(sys.argv[2].split('@')[1].split(':')[1])
+try:
+    METOD = sys.argv[1].upper()
+    RECEPTOR = sys.argv[2].split('@')[0]
+    IP_REC = sys.argv[2].split('@')[1].split(':')[0]
+    PORT_REC = int(sys.argv[2].split('@')[1].split(':')[1])s
+except Exception:
+    sys.exit('Usage: python client.py method receiver@IP:SIPport')
 
 # Contenido que vamos a enviar
 LINE = METOD + ' sip:' + RECEPTOR + '@' + IP_REC + ' SIP/2.0\r\n'
