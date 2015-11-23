@@ -17,6 +17,8 @@ try:
     FICHERO = sys.argv[3]
 except Exception:
     sys.exit('Usage: python server.py IP port audio_file')
+if not os.path.exists(FICHERO):
+    sys.exit('Usage: python server.py IP port audio_file')
 
 
 class EchoHandler(socketserver.DatagramRequestHandler):
@@ -36,7 +38,9 @@ class EchoHandler(socketserver.DatagramRequestHandler):
             if not metod in self.METODOS:
                 self.wfile.write(b'SIP/2.0 405 Method Not Allowed\r\n\r\n')
             elif metod == 'INVITE':
-                send = b'SIP/2.0 100 Trying\r\n\r\nSIP/2.0 180 Ring\r\n\r\nSIP/2.0 200 OK\r\n\r\n'
+                send = b'SIP/2.0 100 Trying\r\n\r\n'
+                send += b'SIP/2.0 180 Ring\r\n\r\n'
+                send += b'SIP/2.0 200 OK\r\n\r\n'
                 self.wfile.write(send)
             elif metod == 'ACK':
                 aEjecutar = './mp32rtp -i 127.0.0.1 -p 23032 < ' + FICHERO
