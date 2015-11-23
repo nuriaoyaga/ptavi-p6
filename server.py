@@ -15,11 +15,13 @@ IP_SERV = sys.argv[1]
 PORT_SERV = int(sys.argv[2])
 FICHERO = sys.argv[3]
 
+
 class EchoHandler(socketserver.DatagramRequestHandler):
     """
     Echo server class
     """
-    METODOS = ['INVITE','BYE','ACK']
+    METODOS = ['INVITE', 'BYE', 'ACK']
+
     def handle(self):
         while 1:
             # Leyendo línea a línea lo que nos envía el cliente
@@ -34,7 +36,7 @@ class EchoHandler(socketserver.DatagramRequestHandler):
                 send = b'SIP/2.0 100 Trying\r\n\r\nSIP/2.0 180 Ring\r\n\r\nSIP/2.0 200 OK\r\n\r\n'
                 self.wfile.write(send)
             elif metod == 'ACK':
-                aEjecutar = './mp32rtp -i 127.0.0.1 -p 23032 < '+ FICHERO
+                aEjecutar = './mp32rtp -i 127.0.0.1 -p 23032 < ' + FICHERO
                 print ('Vamos a ejecutar', aEjecutar)
                 os.system(aEjecutar)
             elif metod == 'BYE':
