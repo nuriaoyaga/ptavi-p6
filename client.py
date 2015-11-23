@@ -30,7 +30,7 @@ data = my_socket.recv(1024)
 
 #Envio del ACK si se recibe el TRYING,RING y OK
 rec_invite = data.decode('utf-8').split('\r\n\r\n')[0:-1]
-if rec_invite == ['SIP/2.0 100 Trying', 'SIP/2.0 180 Ring','SIP/2.0 200 OK']:
+if rec_invite == ['SIP/2.0 100 Trying', 'SIP/2.0 180 Ring', 'SIP/2.0 200 OK']:
     LINE_ACK = 'ACK sip:' + RECEPTOR + '@' + IP_REC + ' SIP/2.0\r\n\r\n'
     print("Enviando: " + LINE_ACK)
     my_socket.send(bytes(LINE_ACK, 'utf-8') + b'\r\n')
