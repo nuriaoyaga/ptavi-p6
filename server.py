@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
 """
-Clase (y programa principal) para un servidor de eco en UDP simple
+Clase (y programa principal) para un servidor de SIP con INVITE, ACK y BYE
 """
 
 import socketserver
@@ -23,7 +23,7 @@ if not os.path.exists(FICHERO):
 
 class EchoHandler(socketserver.DatagramRequestHandler):
     """
-    Echo server class
+    Servidor SIP con INVITE, ACK y BYE
     """
     METODOS = ['INVITE', 'BYE', 'ACK']
 
