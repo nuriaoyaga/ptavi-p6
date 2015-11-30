@@ -3,10 +3,8 @@
 
 """
 Script de comprobación de entrega de práctica
-
 Para ejecutarlo, desde la shell:
  $ python3 check-p6.py login_laboratorio
-
 """
 
 import os
@@ -22,7 +20,9 @@ files = ['README.md',
          'invite.libpcap',
          'check-p6.py',
          'mp32rtp',
-         '.git']
+         '.git',
+         'cancion.mp3'
+]
 
 
 if len(sys.argv) != 2:
@@ -50,7 +50,7 @@ if len(student_file_list) != len(files):
     error = 1
     print("Error: solamente hay que subir al repositorio los ficheros indicados en las guion de practicas, que son en total " + str(len(student_file_list)) + " (incluyendo .git):")
 
-for filename in files:
+    for filename in files:
         error = 1
         print("\tError: " + filename + " no encontrado. Tienes que subirlo al repositorio.")
 
